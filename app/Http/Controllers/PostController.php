@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
- use App\Post ;
- use App\Tag;
- use App\Category;
- use Session;
-// use Purifier;
+use App\Post ;
+use App\Tag;
+use App\Category;
+use Session;
+use Purifier;
 // use Image;
 
 class PostController extends Controller
@@ -51,8 +51,8 @@ class PostController extends Controller
      $post->title = $request->title;
      $post->slug = $request->slug;
      $post->category_id = $request->category_id;
-     //$post->body = Purifier::clean($request->body);
-     $post->body =$request->body;
+     $post->body = Purifier::clean($request->body);
+     //$post->body =$request->body;
 
     //  if ($request->hasFile('featured_img')) {
     //    $image = $request->file('featured_img');
@@ -133,8 +133,8 @@ class PostController extends Controller
      $post->title = $request->title;
      $post->slug = $request->slug;
      $post->category_id = $request->category_id;
-    // $post->body = Purifier::clean($request->body);
-     $post->body =$request->body;
+     $post->body = Purifier::clean($request->body);
+     //$post->body =$request->body;
 
     //  if ($request->hasFile('featured_img')) {
     //    $image = $request->file('featured_img');
