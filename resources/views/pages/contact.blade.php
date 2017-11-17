@@ -1,32 +1,62 @@
 @extends('layouts.main')
 @section('title',' | Contact')
 @section('content')
-  <div class="row">
-    <div class="col-md-12">
-      <h2 class="title"> Contact Us</h2>
-    <form>
-      <fieldset class="form-group">
-        <label for="subject">Email address</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter email">
-        <small class="text-muted">We'll never share your email with anyone else.</small>
-      </fieldset>
-      <fieldset class="form-group">
-        <label for="subject">Subject address</label>
-        <input type="subject" class="form-control" id="subject" placeholder="Enter Subject">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Contact Me</h1>
+                <hr>
+                <form action="{{ url('contact') }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label name="email">Email:</label>
+                        <input id="email" name="email" class="form-control">
+                    </div>
 
-      </fieldset>
+                    <div class="form-group">
+                        <label name="subject">Subject:</label>
+                        <input id="subject" name="subject" class="form-control">
+                    </div>
 
-      <fieldset class="form-group">
-        <label for="message">Massage </label>
-        <textarea class="form-control" id="message" rows="3"></textarea>
-      </fieldset>
+                    <div class="form-group">
+                        <label name="message">Message:</label>
+                        <textarea id="message" name="message" class="form-control">Type your message here...</textarea>
+                    </div>
 
-      <button type="submit" class="btn btn-info">Submit</button>
-    </form>
-
-    </div>
-    <hr>
-
-  </div>
-
+                    <input type="submit" value="Send Message" class="btn btn-info">
+                </form>
+            </div>
+        </div>
 @endsection
+
+
+{{-- @extends('main')
+
+@section('title', '| Contact') --}}
+
+{{-- @section('content')
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Contact Me</h1>
+                <hr>
+                <form action="{{ url('contact') }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <label name="email">Email:</label>
+                        <input id="email" name="email" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label name="subject">Subject:</label>
+                        <input id="subject" name="subject" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label name="message">Message:</label>
+                        <textarea id="message" name="message" class="form-control">Type your message here...</textarea>
+                    </div>
+
+                    <input type="submit" value="Send Message" class="btn btn-success">
+                </form>
+            </div>
+        </div>
+@endsection --}}

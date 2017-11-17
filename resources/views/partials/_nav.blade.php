@@ -6,24 +6,37 @@
 </button>
 
 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-<ul class="navbar-nav mr-auto">
+<ul class="navbar-nav mr-auto ">
   <li class="nav-item ">
-    <a class="nav-link" href="/">Home </a>
+    <a class="nav-link {{Request::is('/')? "active":""}} " href="/">Home </a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link active" href="about">about </a>
+    <a class="nav-link  {{Request::is('about')? "active":""}} " href="about">about </a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link" href="contact">Contact </a>
+    <a class="nav-link {{Request::is('contact')? "active":""}} " href="contact">Contact </a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link {{Request::is('link')? "active":""}} " href="#">Link</a>
   </li>
+
 </ul>
-<form class="form-inline my-2 my-lg-0">
-  <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-</form>
+<ul class="navbar-nav  mr-5" >
+<li class="nav-item dropdown ">
+      <a class="nav-link dropdown-toggle mr-5" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-user-o " ></i>
+      </a>
+      <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="{{route('posts.index')}}">Posts</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Logout</a>
+      </div>
+    </li>
+</ul>
+
+
 </div>
+
 </nav>
   {{-- ./nav baar   --}}
