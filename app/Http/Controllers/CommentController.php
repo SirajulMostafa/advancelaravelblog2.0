@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Comment;
 use App\Post;
@@ -14,12 +13,6 @@ class CommentsController extends Controller
         $this->middleware('auth', ['except' => 'store']);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request, $post_id)
     {
         $this->validate($request, array(
@@ -44,26 +37,12 @@ class CommentsController extends Controller
         return redirect()->route('blogs.single', [$post->slug]);
     }
 
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $comment = Comment::find($id);
         return view('comments.edit')->withComment($comment);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $comment = Comment::find($id);
@@ -84,12 +63,6 @@ class CommentsController extends Controller
         return view('comments.delete')->withComment($comment);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $comment = Comment::find($id);

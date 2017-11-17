@@ -3,9 +3,16 @@
 @section('stylesheets')
 {!! Html::style('css/parsley.css') !!}
 {!! Html::style('css/select2.css') !!}
-{!! Html::style('https://cloud.tinymce.com/stable/tinymce.min.js') !!}
-<script>tinymce.init({ selector:'textarea' });</script>
-@endsection
+{{-- {!! Html::script('https://cloud.tinymce.com/stable/tinymce.min.js') !!} --}}
+<script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    selector: 'textarea',
+    plugins: 'link code image',
+    menubar: false,
+  });
+</script>
+@endsectionklj 
 @section('content')
   <div class="row">
     <div class="col-md-12">
@@ -57,6 +64,8 @@
 	<script type="text/javascript">
 		$('.select2-multi').select2();
 	</script>
+
+
 @endsection
 
 

@@ -15,7 +15,7 @@
 		<div class="col-md-8 col-md-offset-2">
 			<h2>{{ $post->title }}</h2>
 			<h5>Published: {{ date('M j, Y', strtotime($post->created_at)) }}</h5>
-
+{{-- strip_tags insure plane text instant of tag view <h1></h1> --}}
 			<p>{{ substr(strip_tags($post->body), 0, 250) }}{{ strlen(strip_tags($post->body)) > 250 ? '...' : "" }}</p>
 
 			{{-- <a href="{{ route('blogs.single', $post->id) }}" class="btn btn-info">Read More</a> --}}
