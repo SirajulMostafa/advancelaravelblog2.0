@@ -16,7 +16,7 @@
 
 	<div class="row">
     <div class="col-md-8">
-		{!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
+		{!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT','files' => true]) !!}
   <div class="form-group">
 			{{ Form::label('title', 'Title:') }}
 			{{ Form::text('title', null, ["class" => 'form-control input-lg']) }}
@@ -35,6 +35,12 @@
 			{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'id'=>'tags', 'multiple'=>'multiple']) }}
 
 	</div>
+  <div class="form-group">
+			{{ Form::label('featured_image', 'Update Image') }}
+			{{ Form::file('featured_image') }}
+
+	</div>
+
 
 	<div class="form-group">
 			{{ Form::label('body', "Body:", ['class' => 'form-spacing-top']) }}
@@ -75,7 +81,7 @@
 @endsection
 
 @section('scripts')
-
+  {!! Html::script('js/parsley.js') !!}
 	{!! Html::script('js/select2.min.js') !!}
 
 	<script type="text/javascript">

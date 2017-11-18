@@ -3,6 +3,9 @@
 @section('content')
 	<div class="row">
 		<div class="col-md-8">
+			<div class="image">
+				<img src="{{asset('images/'.$post->image)}}" alt="" class="  pull-left img-thumbnail">
+			</div>
 			<div class="table-responsive">
 			<h1>{{ $post->title }}</h1>
 

@@ -43,6 +43,8 @@
           @endforeach
         </select>
       </div>
+      {{ Form::label('featured_img', 'Upload a Featured Image') }}
+      {{ Form::file('featured_img') }}
       <div class="form-group">
         {!!Form::label('body','Body:')!!}
         {!!Form::textarea('body',null,array('class' => 'form-control','required'=> ''))!!}
