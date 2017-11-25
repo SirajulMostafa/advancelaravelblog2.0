@@ -16,7 +16,7 @@ Auth::routes();
 Route::get('contact','PagesController@getContact');
 Route::post('contact','PagesController@postContact');
 Route::get('about','PagesController@getAbout');
-Route::get('/','PagesController@getIndex');
+
 
 Route::get('blogs/{slug}', ['as' => 'blogs.single', 'uses' => 'BlogController@getSingle'])->where('slug', '[\w\d\-\_]+');
 //Route::get('blog/{id}', ['as' => 'blogs.single', 'uses' => 'BlogController@getSingle']);
@@ -46,3 +46,4 @@ Route::resource('tags', 'TagController', ['except' => ['create']]);//create meth
   //Route::get('/home', 'HomeController@index')->name('home');
   Route::resource('posts','PostController');
 //Auth::routes();
+Route::get('/','PagesController@getIndex');

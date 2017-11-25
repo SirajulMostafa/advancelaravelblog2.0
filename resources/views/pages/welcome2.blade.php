@@ -30,16 +30,24 @@
       @foreach ($posts as $post)
       <div class="post">
         <h3>{{$post->title}}</h3>
-          <span class="fa fa-user-o"></span>
-          {{$post->user_id}}
+          <span class="fa fa-user-o">
+          {{$post->created_at->diffForHumans() }}
+          </span>
+      {{-- {{$post->name}} --}}
+      <span class="fa fa-pencil">written By: {{$post->user->name}}</span>
         <p class="details">
           {{-- {{$post->body}} --}}
           {{substr(strip_tags($post->body),0,300)}}{{strlen(strip_tags($post->body))>300?".....":""}}
         </p>
         <a class=" btn btn-info" href="{{url('blogs/'.$post->slug)}}" role="button">Read more</a>
-
+        @if(Auth::id() == $post->user_id)
+        <a class="btn btn-success" href="{{ action('PostController@edit', [$post->id]) }}">
+          <i class="fa fa-pencil"></i>Edit
+        </a>
+        @endif
       </div>
         <hr>
+
         @endforeach
 
     </div>

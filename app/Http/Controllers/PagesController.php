@@ -6,11 +6,14 @@ use Illuminate\Http\Request;
 use App\Post;
 use Mail;
 use Session;
+use App\User;
+//use Carbon\Carbon;
 class PagesController extends Controller
 {
 public function getIndex()
 {
   $posts = Post::orderBy('id','desc')->Paginate(5);
+//  $post = User::find($posts->user_id);
   //dd($posts);
   return view('pages.welcome2')->withPosts($posts);
 
