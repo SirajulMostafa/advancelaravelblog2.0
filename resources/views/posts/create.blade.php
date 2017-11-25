@@ -49,6 +49,7 @@
         {!!Form::label('body','Body:')!!}
         {!!Form::textarea('body',null,array('class' => 'form-control','required'=> ''))!!}
       </div>
+      {{Form::hidden('user_id',Auth::user()->id )}}
 
      {{ Form::submit('Create Post', array('class' => 'btn btn-info btn-lg btn-block', 'style' => 'margin-top: 20px;')) }}
      {!!Form::close()!!}

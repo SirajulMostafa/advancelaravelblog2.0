@@ -6,6 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+  protected $fillable = [
+          'body'
+      ];
+      protected $hidden = [
+          'user_id'
+      ];
+
+
   public function category()
   {//here funtion name is singular
     // but posts was written plural
@@ -22,6 +30,10 @@ class Post extends Model
   public function comments()
   {
     return $this->hasMany('App\Comment');
+  }
+  public function user()
+  {
+    return $this->belongsTo('App\User');
   }
 
 }

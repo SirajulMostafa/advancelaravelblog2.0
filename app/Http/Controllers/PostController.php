@@ -13,11 +13,10 @@ use Storage;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
     public function index()
     {
         //create a variable and store all the blog post in it from the database
@@ -38,6 +37,11 @@ class PostController extends Controller
     }
     public function store(Request $request)
     {
+      // in laravel 5.5 validation work more essy way
+      // now validate is under request object
+      // $request->validate([
+      //   'title'         => 'required|max:255',
+      // ]);
       //dd($request);
       // validate the data
      $this->validate($request, array(
@@ -49,11 +53,12 @@ class PostController extends Controller
          ));
 
      // store in the database
-     $post = new Post;
-     $post->title = $request->title;
-     $post->slug = $request->slug;
-     $post->category_id = $request->category_id;
-     $post->body = Purifier::clean($request->body);
+       $post = new Post;
+       $post->title = $request->input('title');
+       $post->slug = $request->slug;
+       $post->user_id = $request->input('user_id',0);
+       $post->category_id = $request->category_id;
+       $post->body = Purifier::clean($request->body);
 
      if ($request->hasFile('featured_img')) {
        $image = $request->file('featured_img');

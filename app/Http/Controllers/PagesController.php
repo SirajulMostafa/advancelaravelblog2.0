@@ -8,10 +8,11 @@ use Mail;
 use Session;
 class PagesController extends Controller
 {
-public function getIndex( )
+public function getIndex()
 {
-return view('pages.welcome');
-return "hello Index";
+  $posts = Post::orderBy('id','desc')->Paginate(5);
+  //dd($posts);
+  return view('pages.welcome')->withPosts($posts);
 
 }
 public function getAbout( )
@@ -38,7 +39,6 @@ $this->validate($request, [
 'email' => 'required|email',
 'subject' => 'min:3',
 'message' => 'min:10']);
-
 $data = array(
 'email' => $request->email,
 'subject' => $request->subject,
