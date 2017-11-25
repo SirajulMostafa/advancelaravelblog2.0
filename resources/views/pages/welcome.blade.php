@@ -3,10 +3,10 @@
 
 @section('content')
 
-  {{-- <div style="padding-top-10px" class="row">
+  <div style="padding-top-10px" class="row">
     <div class="col-md-12">
       <div class="jumbotron">
-        <h1 class="display-3">Wellcome  to my Laravel blog Site</h1>
+        <h1 class="display-3">Welcome to my Laravel blog Site</h1>
         <p class="lead">
           This is a Blog site, this is my Laravel blog site make with laravel5.5.</p>
         <hr class="my-4">
@@ -16,7 +16,7 @@
         </p>
     </div>
     </div>
-  </div> --}}
+  </div>
   <div class="row">
     <div class="col-md-8">
       @foreach ($posts as $post)
@@ -40,6 +40,14 @@
   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
   sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="text-md-center">
+        {{-- {!! $posts->links() !!} --}}
+        {!!$posts->render('vendor.pagination.bootstrap-4')!!}
+      </div>
     </div>
   </div>
   @endsection

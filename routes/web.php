@@ -15,7 +15,6 @@ Auth::routes();
 //PagesController custom route
 Route::get('contact','PagesController@getContact');
 Route::post('contact','PagesController@postContact');
-
 Route::get('about','PagesController@getAbout');
 Route::get('/','PagesController@getIndex');
 
@@ -44,6 +43,6 @@ Route::resource('tags', 'TagController', ['except' => ['create']]);//create meth
 	Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' => 'comments.delete']);
 
   Route::get('/home', 'HomeController@index')->name('home');
-  Route::get('/home', 'HomeController@index')->name('home');
+  //Route::get('/home', 'HomeController@index')->name('home');
   Route::resource('posts','PostController');
 //Auth::routes();

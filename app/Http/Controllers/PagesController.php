@@ -12,7 +12,7 @@ public function getIndex()
 {
   $posts = Post::orderBy('id','desc')->Paginate(5);
   //dd($posts);
-  return view('pages.welcome')->withPosts($posts);
+  return view('pages.welcome2')->withPosts($posts);
 
 }
 public function getAbout( )
