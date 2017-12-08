@@ -82,7 +82,7 @@ class PostController extends Controller
       $post = Post::findOrFail($id);
         //die($post);
         $post_user_id = $post['user_id'];
-        if ($this->permisstion_for_access_post($post_user_id)!=true){
+        if ($this->is_permisstion_for_access_post($post_user_id)!=true){
            return redirect('/home')->with('status-error','sorry you have no access for this session');
         }
        // dd(!$this->permisstion_for_access_post($post_user_id));
