@@ -13,8 +13,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    You are logged in!
+                        @if (session('status-error'))
+                        <div class="alert alert-danger">
+                            {{ session('status-error') }}
+                        </div>
+                        @endif
+                    You are logged in! {!! Auth::user()->name!!}
                 </div>
             </div>
         </div>

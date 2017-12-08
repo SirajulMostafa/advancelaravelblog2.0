@@ -58,6 +58,10 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
+                                      <a class="dropdown-item" href="{{url('posts')}}">Posts</a>
+                                      <a class="dropdown-item" href="{{url('blogs')}}">Blog</a>
+
+                                        </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}

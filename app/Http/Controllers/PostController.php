@@ -10,7 +10,7 @@ use Session;
 use Purifier;
 use Image;
 use Storage;
-
+use Auth;
 class PostController extends Controller
 {
   public function __construct()
@@ -18,12 +18,15 @@ class PostController extends Controller
       $this->middleware('auth');
   }
     public function index()
-    {
+    { 
         //create a variable and store all the blog post in it from the database
         //$post = Post::all();
-        $post =Post::orderBy('id','desc')->Paginate(5);
+         $id =Auth::id();
+         // dd($id);
+        $post =Post::orderBy('id','desc')->where('user_id',$id)->Paginate(5);
         return view('posts.index')->withPosts($post);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -77,6 +80,16 @@ class PostController extends Controller
     public function show($id)
     {
       $post = Post::findOrFail($id);
+        //die($post);
+        $post_user_id = $post['user_id'];
+        if ($this->permisstion_for_access_post($post_user_id)!=true){
+           return redirect('/home')->with('status-error','sorry you have no access for this session');
+        }
+       // dd(!$this->permisstion_for_access_post($post_user_id));
+
+
+        //dd($post_user_id);
+
       //return view('posts.show')->with('post',$post);//1st one is variable and 2nd is option object
       return view('posts.show')->withPost($post);//1st one is variable and 2nd is  object
     }
@@ -89,13 +102,16 @@ class PostController extends Controller
               // return view('posts.edit')->withPost($post);//1st one is variable and 2nd is  object
               // find the post in the database and save as a var
                $post = Post::findOrFail($id);
+               $post_user_id = $post['user_id'];
+                if ($this->is_permisstion_for_access_post($post_user_id)!=true){
+                  return redirect('/home')->with('status-error','sorry you  can not edit this post, because you are nto author for this post');
+                 }
                $categories = Category::all();
                $categories = $categories->pluck('name','id')->all();
               //  $cats = array();
               //  foreach ($categories as $category) {
-              //      $cats[$category->id] = $category->name;
+              //   $cats[$category->id] = $category->name;
               //  }
-
                $tags = Tag::all();
               // $tags2->pluck('tag_id')->all();
                $tags=$tags->pluck('name','id')->all();
@@ -104,7 +120,7 @@ class PostController extends Controller
               //  foreach ($tags as $tag) {
               //      $tags2[$tag->id] = $tag->name;
               //  }
-               // return the view and pass in the var we previously created
+
                return view('posts.edit')->withPost($post)
                       ->withCategories($categories)
                       ->withTags($tags);
@@ -114,7 +130,11 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
       // validate the data
-      $post = Post::findOrFail($id);
+        $post = Post::findOrFail($id);
+        $post_user_id = $post['user_id'];
+        if ($this->is_permisstion_for_access_post($post_user_id)!=true){
+            return redirect('/home')->with('status-error','sorry you  can not edit this post, because you are not author for this post');
+        }
       //when input slug is same than this field need not update
       //unique field is not work if validation check withot change field
       if ($request->input('slug')==$post->slug) {
@@ -179,4 +199,16 @@ class PostController extends Controller
       return redirect()->route('posts.index')
       ->with('success','The post was successfully deleted.');
     }
+
+/*check the user's id == posts's user_id*/
+public function is_permisstion_for_access_post($id)
+{    $post_user_id= $id;
+    //dd($current_user_id)  ;
+    if ($post_user_id==Auth::id()){
+        return true;
+    }
+    return false;
+
+}
+
 }

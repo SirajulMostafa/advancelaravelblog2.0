@@ -3,7 +3,6 @@
 <?php $titleTag = htmlspecialchars($post->title); ?>
 @section('title',' | Blog')
 @section('stylesheets')
-
 @section('content')
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
@@ -58,7 +57,7 @@
 						{{ Form::label('comment', "Comment:") }}
 						{{ Form::textarea('comment', null, ['class' => 'form-control', 'rows' => '5']) }}
 
-						{{ Form::submit('Add Comment', ['class' => 'btn btn-success btn-block', 'style' => 'margin-top:15px;']) }}
+						{{ Form::submit('Add Comment', ['class' => 'btn btn-info btn-block', 'style' => 'margin-top:15px;']) }}
 					</div>
 				</div>
 

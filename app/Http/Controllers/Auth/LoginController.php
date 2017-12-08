@@ -33,7 +33,7 @@ class LoginController extends Controller
      * @return void
      */
     public function __construct()
-    {
+    {  //if user is not registered he/she can not access admin panel with out logout pagemethod
         $this->middleware('guest')->except('logout');
     }
 }

@@ -60,18 +60,27 @@
 				</dl>
 
 				<dl class="dl-horizontal">
+					<style media="screen">
+						.dl-p{
+							/*padding-left: 5rem;*/
+					    font-size: .9rem;
+					    /*opacity: .7;*/
+					    color: #17b4c7;
+						}
+					</style>
+<span class="label label-default|primary|success|info|warning|danger"></span>
 					<label>Category:</label>
-					<p>{{ $post->category->name }}</p>
+					<p class="dl-p">{{ $post->category->name }}</p>
 				</dl>
 
 				<dl class="dl-horizontal">
 					<label>Created At:</label>
-					<p>{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
+					<p class="dl-p">{{ date('M j, Y h:ia', strtotime($post->created_at)) }}</p>
 				</dl>
 
 				<dl class="dl-horizontal">
 					<label>Last Updated:</label>
-					<p>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</p>
+					<p class="dl-p">{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</p>
 				</dl>
 				<hr>
 				<div class="row">
