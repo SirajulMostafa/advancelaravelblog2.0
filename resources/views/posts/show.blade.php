@@ -8,21 +8,21 @@
 			</div>
 			<div class="table-responsive">
 			<h1>{{ $post->title }}</h1>
-
 			<p class="lead">{!! $post->body !!}</p>
-
 			<hr>
-
 			<div class="tags">
-				@foreach ($post->tags as $tag)
+				@forelse($post->tags as $tag)
 						<span class="badge badge-info">{{ $tag->name }}</span>
-				@endforeach
+                    @empty
+                    <span class="badge badge-info">No tag assign for this post.</span>
+				@endforelse
 			</div>
-
 			<div id="backend-comments" style="margin-top: 50px;">
-				<h3>Comments <small>{{ $post->comments()->count() }} total</small></h3>
+			Total Comment: <small>{!! count( $post->comments) !!} </small>
+	         @forelse($post->comments as $comment)
+			    <h3> Total Comments: <small>{{($comment)}}</small></h3>
 
-				<table class="table">
+				    <table class="table">
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -33,7 +33,6 @@
 					</thead>
 
 					<tbody>
-						@foreach ($post->comments as $comment)
 						<tr>
 							<td>{{ $comment->name }}</td>
 							<td>{{ $comment->email }}</td>
@@ -44,9 +43,14 @@
 								<a href="{{ route('comments.delete', $comment->id) }}" class="btn btn-sm btn-danger"><span class="fa fa-trash-o"></span></a>
 							</td>
 						</tr>
-						@endforeach
+
 					</tbody>
 				</table>
+				@empty
+			<div class="alert alert-info">
+			<h3><small> No comment for this post!</small></h3>
+			</div>
+				@endforelse
 			</div>
 		</div>
 </div>
