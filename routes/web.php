@@ -43,7 +43,10 @@ Route::resource('tags', 'TagController', ['except' => ['create']]);//create meth
 	Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' => 'comments.delete']);
 
   Route::get('/home', 'HomeController@index')->name('home');
-  //Route::get('/home', 'HomeController@index')->name('home');
-  Route::resource('posts','PostController');
-//Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('home');
+//if controller name an user  name is not same we must use name() function to tell
+// which controller we want to use
+Route::get('users/{id}/posts','UserPostController@index')->name('userposts');
+Route::resource('posts','PostController');
+
 Route::get('/','PagesController@getIndex');
