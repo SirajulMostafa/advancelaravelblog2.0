@@ -13,7 +13,7 @@ class AddUserIdColumnToPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
+         Schema::table('posts', function (Blueprint $table) {
           $table->string('user_id')->after('category_id');
         });
     }
