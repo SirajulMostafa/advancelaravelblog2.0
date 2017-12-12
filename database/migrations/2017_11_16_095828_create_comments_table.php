@@ -34,7 +34,10 @@ class CreateCommentsTable extends Migration
      * @return void
      */
     public function down()
-    {   Schema::dropForeign(['post_id']);
-        Schema::dropIfExists('comments');
+    {  // Schema::dropForeign(['post_id']);//useing on deleted cascade
+       Schema::dropIfExists('comments');
+        ///Schema::table('comments',function (Blueprint $table){
+         // $table->dropForeign(['post_id'])  ;// -here//post_id key name
+       // });
     }
 }
