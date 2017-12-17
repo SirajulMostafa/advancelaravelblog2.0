@@ -12,7 +12,7 @@ class PagesController extends Controller
 {
 public function getIndex()
 {
-  $posts = Post::orderBy('id','desc')->Paginate(5);
+  $posts = Post::orderBy('id','desc')->Paginate(10);
 //  $post = User::find($posts->user_id);
   //dd($posts);
   return view('pages.welcome2')->withPosts($posts);

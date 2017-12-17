@@ -15,8 +15,14 @@ class PostTableSeeder extends Seeder
             $ids = range(1,5); //cz we considering that already insert 10  tag id=1-10
             shuffle($ids);
             if ($boolean){
+                //many to many relatonship
                 $sliced =array_slice($ids,0,3);//every post has define by the last param  three/2/1 tag
-                $post->tags()->attach($sliced);
+                $post->tags()->attach($sliced);//we atatch the ids to the post->tags/post_tag pivot table
+
+            }else{
+                //if boolean is 0
+                $post->tags()->attach(array_rand($ids,1));//one post has at least on tag in this time
+//                $sliced =array_rand($ids,$1);
             }
         });
     }

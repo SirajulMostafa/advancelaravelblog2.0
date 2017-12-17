@@ -4,30 +4,27 @@
     <div class="row">
         <div class="col-md-8">
             <div class="image">
-                <img src="{{asset('images/'.$post->image)}}" alt="" class="  pull-left img-thumbnail">
+                {{--<img src="{{asset('images/'.$post->image)}}" alt="" class="  pull-left img-thumbnail">--}}
             </div>
             <div class="table-responsive">
                 <h1>{{ $post->title }}</h1>
                 <p class="lead">{!! $post->body !!}</p>
                 <hr>
                 <div class="tags">
-                    @php
-                        $input = array("info", "danger", "success", "warning","primary","secondary");
-                    $i=0;
-                    @endphp
-
                     @forelse($post->tags as $tag)
-                        <span class="badge badge-{{$input[$i] }}">{{ $tag->name }}</span>
-                        <?php $i++;?>
+                        <span class="badge badge-info">{{ $tag->name }}</span>
                     @empty
                         <span class="badge badge-info">No tag assign for this post.</span>
                     @endforelse
                 </div>
                 <div id="backend-comments" style="margin-top: 50px;">
-                    <h4> Total Comments:
-                        <small>{!! count( $post->comments) !!} </small>
-                    </h4>
+                    Total Comment:
+                    <small>{!! count( $post->comments) !!} </small>
                     @forelse($post->comments as $comment)
+                        <h3> Total Comments:
+                            <small>{{($comment)}}</small>
+                        </h3>
+
                         <table class="table">
                             <thead>
                             <tr>

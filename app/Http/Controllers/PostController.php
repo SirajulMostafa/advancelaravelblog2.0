@@ -23,7 +23,7 @@ class PostController extends Controller
         //$post = Post::all();
          $id =Auth::id();
          // dd($id);
-        $post =Post::orderBy('id','desc')->where('user_id',$id)->Paginate(5);
+        $post =Post::orderBy('id','desc')->where('user_id',$id)->Paginate(10);
         return view('posts.index')->withPosts($post);
     }
 

@@ -58,11 +58,10 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
-                                      <a class="dropdown-item" href="{{url('posts')}}">Posts</a>
-                                      <a class="dropdown-item" href="{{url('blogs')}}">Blog</a>
-
-                                        </a>
-
+                                       <a class="dropdown-item" href="{{url('posts')}}">Posts</a>
+                                       <a class="dropdown-item" href="{{url('users/profile')}}">Profile</a>
+                                        <a class="dropdown-item" href="{{url('posts')}}">Member</a>
+                                       <a class="dropdown-item" href="{{url('blogs')}}">Blog</a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>

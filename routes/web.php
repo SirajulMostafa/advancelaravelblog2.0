@@ -25,6 +25,27 @@ Route::get('blogs', ['uses' => 'BlogController@getIndex', 'as' => 'blogs.index']
 // Categories
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 Route::resource('tags', 'TagController', ['except' => ['create']]);//create method bad dewa hoyche
+
+// Comments
+Route::post('comments/{post_id}', ['uses' => 'CommentsController@store', 'as' => 'comments.store']);
+Route::get('comments/{id}/edit', ['uses' => 'CommentsController@edit', 'as' => 'comments.edit']);
+Route::put('comments/{id}', ['uses' => 'CommentsController@update', 'as' => 'comments.update']);
+Route::delete('comments/{id}', ['uses' => 'CommentsController@destroy', 'as' => 'comments.destroy']);
+Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' => 'comments.delete']);
+
+Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
+//if controller name an user  name is not same we must use name() function to tell
+// which controller we want to use
+Route::get('users/{id}/posts','UserPostController@index')->name('userposts');
+Route::resource('posts','PostController');
+
+Route::get('/','PagesController@getIndex');
+
+Route::get('users/profile','UserController@profile');
+Route::resource('users','UserController');
+
+
 // Route::apiResources([
 //  'categories' => 'CategoryController',
 //  'tags' => 'TagController'
@@ -34,19 +55,3 @@ Route::resource('tags', 'TagController', ['except' => ['create']]);//create meth
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-// Comments
-	Route::post('comments/{post_id}', ['uses' => 'CommentsController@store', 'as' => 'comments.store']);
-	Route::get('comments/{id}/edit', ['uses' => 'CommentsController@edit', 'as' => 'comments.edit']);
-	Route::put('comments/{id}', ['uses' => 'CommentsController@update', 'as' => 'comments.update']);
-	Route::delete('comments/{id}', ['uses' => 'CommentsController@destroy', 'as' => 'comments.destroy']);
-	Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' => 'comments.delete']);
-
-  Route::get('/home', 'HomeController@index')->name('home');
-//Route::get('/home', 'HomeController@index')->name('home');
-//if controller name an user  name is not same we must use name() function to tell
-// which controller we want to use
-Route::get('users/{id}/posts','UserPostController@index')->name('userposts');
-Route::resource('posts','PostController');
-
-Route::get('/','PagesController@getIndex');

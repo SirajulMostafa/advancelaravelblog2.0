@@ -37,7 +37,8 @@
           {{ Auth::user()->name }}
       </a>
       <div class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" href="{{route('posts.index')}}">Profile</a>
+        <a class="dropdown-item" href="{{url('users/profile')}}">Profile</a>
+        <a class="dropdown-item" href="{{url('users')}}">Members</a>
           <a class="dropdown-item" href="{{url('posts')}}">Posts</a>
             <a class="dropdown-item" href="{{route('blogs.index')}}">Blog</a>
             

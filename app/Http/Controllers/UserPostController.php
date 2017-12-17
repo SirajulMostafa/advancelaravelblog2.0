@@ -13,7 +13,7 @@ class UserPostController extends Controller
     public function index($userid)
     {
       //  $posts = User::find($userid)->posts;
-        $posts = User::findOrFail($userid)->posts()->paginate(2);
+        $posts = User::findOrFail($userid)->posts()->paginate(10);
       // return $posts;
         return view('userposts.index',compact('posts'));
     }
